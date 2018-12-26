@@ -133,14 +133,14 @@ public class ShiroConfig {
         sfb.setFilters(filters);
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/login", "verCode,anon");
-        filterMap.put("/blogLogin", "verCode,anon");
+//        filterMap.put("/blogLogin", "verCode,anon");
         filterMap.put("/getCode", "anon");
         filterMap.put("/img/**", "anon");
         filterMap.put("/logout", "logout");
         filterMap.put("/plugin/**", "anon");
         filterMap.put("/user/**", "per");
-        filterMap.put("/blog-admin/**", "jwt");
-        filterMap.put("/blog/**", "anon");
+//        filterMap.put("/blog-admin/**", "jwt");
+//        filterMap.put("/blog/**", "anon");
         filterMap.put("/**", "authc");
         sfb.setFilterChainDefinitionMap(filterMap);
         return sfb;
