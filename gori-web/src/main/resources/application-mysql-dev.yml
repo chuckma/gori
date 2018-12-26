@@ -1,0 +1,93 @@
+server:
+  port: 8082
+
+
+
+#spring:
+#  profiles: dev
+#    active: @spring.active@
+#
+#spring:
+#  profiles: dev
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    schema: classpath:db/schema-h2.sql
+#    data: classpath:db/data-h2.sql
+#    url: jdbc:h2:mem:test
+#    username: root
+#    password: 123456
+
+
+
+
+spring:
+  devtools:
+      restart:
+        enabled: true
+  datasource:
+        url: jdbc:mysql://localhost:3306/lenos?useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: 123456
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+  http:
+      encoding:
+        force: true
+  boot:
+    admin:
+      client:
+        prefer-ip: true
+      url: http://localhost:8082
+
+#mybatis:
+#    type-aliases-package: cn.gori.entity
+#    mapper-locations: classpath*:mapper/*.xml
+#    check-config-location: true
+
+mybatis-plus:
+  type-aliases-package: cn.gori.entity
+  mapper-locations: classpath*:mapper/*.xml
+#  config-location: classpath:mybatis-config.xml
+  check-config-location: true
+
+mapper:
+    mappers:
+        - cn.gori.base.BaseMapper
+        - tk.mybatis.mapper.common.Mapper
+    not-empty: true
+    identity: mysql
+
+
+# PageHelperConfig 可以替代此方案
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+lenosp:
+  uploadPath: ./file/
+  isDayType: false
+
+  imagePath: ./image/
+
+logging:
+  file: ./logs/gori-log.log
+  level:
+    cn.gori.mapper: debug
+
+dataType: mysql
